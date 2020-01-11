@@ -5,10 +5,11 @@ plugins {
 }
 
 group = 'com.chanse.configuration'
-version = '0.0.1-SNAPSHOT'
+version '1.0-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 repositories {
+	mavenLocal()
 	mavenCentral()
 }
 
@@ -21,6 +22,10 @@ dependencies {
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
+
+	compile group: 'com.chanse.newUt', name: 'Messaging', version: '1.0-SNAPSHOT'
+	compile group: 'com.chanse.newUt', name: 'ComSim', version: '1.0-SNAPSHOT'
+	compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: '2.2.1.RELEASE'
 }
 
 dependencyManagement {
