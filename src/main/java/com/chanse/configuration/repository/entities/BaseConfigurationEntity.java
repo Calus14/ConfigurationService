@@ -11,6 +11,7 @@ import java.util.UUID;
 /**
  * Entity that will hold a "Configuration" set up
  */
+@MappedSuperclass
 @Data
 public abstract class BaseConfigurationEntity implements Serializable {
 

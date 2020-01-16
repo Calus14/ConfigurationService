@@ -1,0 +1,18 @@
+Wnidows key, sql
+Run
+
+First make sure postgres is up and running
+postgres -D "c:\Program Files\PostgreSQL\10\data"
+or
+pg_ctl -D "C:\Program Files\PostgreSQL\10\data"
+
+Then verify its on 5432
+
+Then log into sql shell
+
+From https://www.guru99.com/postgresql-create-database.html
+##### Creating a database
+CREATE DATABASE newutconfiguration
+
+nestat -a -n -o
+taskkill /F /PID <PID>

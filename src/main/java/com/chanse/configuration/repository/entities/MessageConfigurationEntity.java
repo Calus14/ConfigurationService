@@ -1,7 +1,9 @@
 package com.chanse.configuration.repository.entities;
 
+import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import lombok.Data;
 import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,10 +18,11 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(name="messageConfigurationTable",
         uniqueConstraints = {@UniqueConstraint(columnNames = {"message_name", "platform_name", "project_name"})})
+@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 @Data
 public class MessageConfigurationEntity extends BaseConfigurationEntity {
 
-    @Column(name="message_name")
+    @Column(name="message_name", nullable = false)
     private String messageName;
 
     @Type(type="jsonb")

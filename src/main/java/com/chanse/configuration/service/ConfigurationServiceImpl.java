@@ -3,6 +3,12 @@ package com.chanse.configuration.service;
 import com.chanse.comsim.domain.client.ComSimClient;
 import com.chanse.comsim.domain.dto.SendMessageDto;
 import com.chanse.comsim.domain.dto.TransportServiceDto;
+import com.chanse.configuration.domain.dto.InterfaceDecoderConfigurationDto;
+import com.chanse.configuration.domain.dto.MessageConfigurationDto;
+import com.chanse.configuration.domain.dto.TransportConfigurationDto;
+import com.chanse.configuration.repository.InterfaceDecoderConfigurationRepository;
+import com.chanse.configuration.repository.MessageConfigurationRepository;
+import com.chanse.configuration.repository.TransportConfigurationRepository;
 import com.chanse.messaging.fields.IntegerDataField;
 import com.chanse.messaging.fields.InterfaceDataField;
 import com.chanse.messaging.fields.StaticDataField;
@@ -27,7 +33,111 @@ public class ConfigurationServiceImpl implements ConfigurationService{
     @Autowired
     public ComSimClient myComSimClient;
 
-    @PostConstruct
+    @Override
+    public List<MessageConfigurationDto> getMessages(String projectName) {
+        return null;
+    }
+
+    @Override
+    public List<MessageConfigurationDto> getMessages(String projectName, String platformName) {
+        return null;
+    }
+
+    @Override
+    public MessageConfigurationDto getMessage(String projectName, String platformName, String messageName) {
+        return null;
+    }
+
+    @Override
+    public MessageConfigurationDto getMessage(UUID specificId) {
+        return null;
+    }
+
+    @Override
+    public boolean editMessage(MessageConfigurationDto messageChanges) {
+        return false;
+    }
+
+    @Override
+    public boolean deleteMessage(MessageConfigurationDto message) {
+        return false;
+    }
+
+    @Override
+    public boolean addMessage(MessageConfigurationDto message) {
+        return false;
+    }
+
+    @Override
+    public List<InterfaceDecoderConfigurationDto> getInterfaceDecoders(String projectName) {
+        return null;
+    }
+
+    @Override
+    public List<InterfaceDecoderConfigurationDto> getInterfaceDecoders(String projectName, String platformName) {
+        return null;
+    }
+
+    @Override
+    public InterfaceDecoderConfigurationDto getInterfaceDecoder(String projectName, String platformName, String configurationName) {
+        return null;
+    }
+
+    @Override
+    public InterfaceDecoderConfigurationDto getInterfaceDecoder(UUID specificId) {
+        return null;
+    }
+
+    @Override
+    public boolean editInterfaceDecoder(InterfaceDecoderConfigurationDto interfaceDecoder) {
+        return false;
+    }
+
+    @Override
+    public boolean deleteInterfaceDecoder(InterfaceDecoderConfigurationDto interfaceDecoder) {
+        return false;
+    }
+
+    @Override
+    public boolean addInterfaceDecoder(InterfaceDecoderConfigurationDto interfaceDecoder) {
+        return false;
+    }
+
+    @Override
+    public List<TransportConfigurationDto> getTransportConfigurations(String projectName) {
+        return null;
+    }
+
+    @Override
+    public List<TransportConfigurationDto> getTransportConfigurations(String projectName, String platformName) {
+        return null;
+    }
+
+    @Override
+    public TransportConfigurationDto getTransportConfiguration(String projectName, String platformName, String configurationName) {
+        return null;
+    }
+
+    @Override
+    public TransportConfigurationDto getTransportConfiguration(UUID specificId) {
+        return null;
+    }
+
+    @Override
+    public boolean editTransportConfiguration(TransportConfigurationDto interfaceDecoder) {
+        return false;
+    }
+
+    @Override
+    public boolean deleteTransportConfiguration(TransportConfigurationDto interfaceDecoder) {
+        return false;
+    }
+
+    @Override
+    public boolean addTransportConfiguration(TransportConfigurationDto interfaceDecoder) {
+        return false;
+    }
+
     @Override
     public void loadConfiguration() {
 
@@ -76,7 +186,6 @@ public class ConfigurationServiceImpl implements ConfigurationService{
         }
 
     }
-
 
     /**
      * TODO REMOVE BELOW THIS JUST A FAST ADD IN

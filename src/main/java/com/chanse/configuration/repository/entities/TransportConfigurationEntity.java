@@ -1,14 +1,21 @@
 package com.chanse.configuration.repository.entities;
 
+import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import lombok.Data;
 import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
 
-import javax.persistence.*;
-import java.util.UUID;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
 
 @Entity
 @Table(name = "transportConfigurationTable",
         uniqueConstraints = {@UniqueConstraint(columnNames = {"configuration_name", "platform_name", "project_name"})})
+@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 @Data
 public class TransportConfigurationEntity extends BaseConfigurationEntity {
 
@@ -24,7 +31,7 @@ public class TransportConfigurationEntity extends BaseConfigurationEntity {
     private String userComments;
 
     @ManyToOne
-    @JoinColumn(name="config_id")
+    @JoinColumn(name="decoder_config_id")
     private InterfaceDecoderConfigurationEntity interfaceDecoderConfigurationEntity;
 
 }

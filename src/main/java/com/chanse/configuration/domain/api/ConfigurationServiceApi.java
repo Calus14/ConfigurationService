@@ -6,7 +6,6 @@ import com.chanse.configuration.domain.dto.TransportConfigurationDto;
 import com.chanse.configuration.domain.dto.UserCredentialsDto;
 import com.chanse.configuration.repository.entities.InterfaceDecoderConfigurationEntity;
 import com.chanse.messaging.msginterface.InterfaceDecoder;
-import jdk.internal.jline.internal.Nullable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,7 +42,7 @@ public interface ConfigurationServiceApi {
     @RequestMapping(value = "/configurationMessages",
             method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.ACCEPTED)
-    List<MessageConfigurationDto> getConfigurationMessages(String project, @Nullable String platform);
+    List<MessageConfigurationDto> getConfigurationMessages(String project, String platform);
 
     /**
      * Returns the messageConfiguration tied to a given project and its platform and message name.
@@ -98,10 +97,10 @@ public interface ConfigurationServiceApi {
      * @param platform NULLABLE the name of the platform in the project you wish to query
      * @return A List of DTO's representing all messages for the given parameters
      */
-    @RequestMapping(value = "/configurationMessages",
+    @RequestMapping(value = "/interfaceDecoders",
             method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.ACCEPTED)
-    List<InterfaceDecoderConfigurationDto> getGetInterfaceDecoders(String project, @Nullable String platform);
+    List<InterfaceDecoderConfigurationDto> getGetInterfaceDecoders(String project, String platform);
 
     /**
      * Returns the messageConfiguration tied to a given project and its platform and message name.
@@ -110,7 +109,7 @@ public interface ConfigurationServiceApi {
      * @param project message you are seeking
      * @return A List of DTO's representing all messages for the given parameters
      */
-    @RequestMapping(value = "/configurationMessage",
+    @RequestMapping(value = "/interfaceDecoder",
             method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.ACCEPTED)
     InterfaceDecoderConfigurationDto getInterfaceDecoder(String project, String platform, String configurationName);
@@ -120,7 +119,7 @@ public interface ConfigurationServiceApi {
      * exists with the correct unqiueness
      * @param dto the new DTO that wishes to be added
      */
-    @RequestMapping(value = "/configurationMessage",
+    @RequestMapping(value = "/interfaceDecoder",
             method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.ACCEPTED)
     void putInterfaceDecoder(InterfaceDecoderConfigurationDto dto);
@@ -130,7 +129,7 @@ public interface ConfigurationServiceApi {
      * exists returns. Once the message is found all data is replaced with the sent down dto
      * @param dto The DTO that represents the message configuration we wish to replace
      */
-    @RequestMapping(value = "/updateConfigurationMessage",
+    @RequestMapping(value = "/updateInterfaceDecoder",
             method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.ACCEPTED)
     void updateInterfaceDecoder(InterfaceDecoderConfigurationDto dto);
@@ -139,7 +138,7 @@ public interface ConfigurationServiceApi {
      * Attempts to create and place a messageConfiguration entity into the database if no message currently
      * exists with the correct unqiueness
      */
-    @RequestMapping(value = "/deleteConfigurationMessage",
+    @RequestMapping(value = "/deleteInterfaceDecoder",
             method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.ACCEPTED)
     void deleteInterfaceDecoder(String project, String platform, String configurationName);
@@ -155,51 +154,51 @@ public interface ConfigurationServiceApi {
      * @param platform NULLABLE the name of the platform in the project you wish to query
      * @return A List of DTO's representing all messages for the given parameters
      */
-    @RequestMapping(value = "/configurationMessages",
+    @RequestMapping(value = "/transportConfigurations",
             method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.ACCEPTED)
-    List<TransportConfigurationDto> getGetInterfaceDecoders(String project, @Nullable String platform);
+    List<TransportConfigurationDto> getTransportConfigurations(String project, String platform);
 
     /**
-     * Returns the messageConfiguration tied to a given project and its platform and message name.
+     * Returns the TransportConfigurationDto tied to a given project and its platform and message name.
      * @param project The name of the project you wish to query
      * @param platform The name of the platform in the project you wish to query
      * @param project message you are seeking
      * @return A List of DTO's representing all messages for the given parameters
      */
-    @RequestMapping(value = "/configurationMessage",
+    @RequestMapping(value = "/transportConfiguration",
             method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.ACCEPTED)
-    InterfaceDecoderConfigurationDto getInterfaceDecoder(String project, String platform, String configurationName);
+    TransportConfigurationDto getTransportConfiguration(String project, String platform, String configurationName);
 
     /**
-     * Attempts to create and place a messageConfiguration entity into the database if no message currently
+     * Attempts to create and place a TransportConfigurationDto entity into the database if no message currently
      * exists with the correct unqiueness
      * @param dto the new DTO that wishes to be added
      */
-    @RequestMapping(value = "/configurationMessage",
+    @RequestMapping(value = "/transportConfiguration",
             method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.ACCEPTED)
-    void putInterfaceDecoder(InterfaceDecoderConfigurationDto dto);
+    void putTransportConfiguration(TransportConfigurationDto dto);
 
     /**
-     * Attempts to find a messageConfiguration entity in the database if no message currently
+     * Attempts to find a TransportConfigurationDto entity in the database if no message currently
      * exists returns. Once the message is found all data is replaced with the sent down dto
      * @param dto The DTO that represents the message configuration we wish to replace
      */
-    @RequestMapping(value = "/updateConfigurationMessage",
+    @RequestMapping(value = "/updateTransportConfiguration",
             method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.ACCEPTED)
-    void updateInterfaceDecoder(InterfaceDecoderConfigurationDto dto);
+    void updateTransportConfiguration(TransportConfigurationDto dto);
 
     /**
-     * Attempts to create and place a messageConfiguration entity into the database if no message currently
+     * Attempts to create and place a TransportConfigurationDto entity into the database if no message currently
      * exists with the correct unqiueness
      */
-    @RequestMapping(value = "/deleteConfigurationMessage",
+    @RequestMapping(value = "/deleteTransportConfiguration",
             method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.ACCEPTED)
-    void deleteInterfaceDecoder(String project, String platform, String configurationName);
+    void deleteTransportConfiguration(String project, String platform, String configurationName);
 
 
 
