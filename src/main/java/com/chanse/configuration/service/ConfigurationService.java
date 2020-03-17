@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.UUID;
 
 public interface ConfigurationService {
-    //TODO
-    void loadConfiguration();
 
     /**************************************************************************************
      * Messages
@@ -19,11 +17,11 @@ public interface ConfigurationService {
     MessageConfigurationDto getMessage(String projectName, String platformName, String messageName);
     MessageConfigurationDto getMessage(UUID specificId);
 
-    boolean editMessage(MessageConfigurationDto messageChanges);
+    UUID editMessage(MessageConfigurationDto messageChanges);
 
-    boolean deleteMessage(MessageConfigurationDto message);
+    boolean deleteMessage(String projectName, String platformName, String messageName);
 
-    boolean addMessage(MessageConfigurationDto message);
+    UUID addMessage(MessageConfigurationDto message);
 
     /**************************************************************************************
      * InterfaceDecoderConfiguration
@@ -33,11 +31,11 @@ public interface ConfigurationService {
     InterfaceDecoderConfigurationDto getInterfaceDecoder(String projectName, String platformName, String configurationName);
     InterfaceDecoderConfigurationDto getInterfaceDecoder(UUID specificId);
 
-    boolean editInterfaceDecoder(InterfaceDecoderConfigurationDto interfaceDecoder);
+    UUID editInterfaceDecoder(InterfaceDecoderConfigurationDto interfaceDecoder);
 
-    boolean deleteInterfaceDecoder(InterfaceDecoderConfigurationDto interfaceDecoder);
+    boolean deleteInterfaceDecoder(String projectName, String platformName, String configurationName);
 
-    boolean addInterfaceDecoder(InterfaceDecoderConfigurationDto interfaceDecoder);
+    UUID addInterfaceDecoder(InterfaceDecoderConfigurationDto interfaceDecoder);
 
 
     /**************************************************************************************
@@ -48,9 +46,9 @@ public interface ConfigurationService {
     TransportConfigurationDto getTransportConfiguration(String projectName, String platformName, String configurationName);
     TransportConfigurationDto getTransportConfiguration(UUID specificId);
 
-    boolean editTransportConfiguration(TransportConfigurationDto interfaceDecoder);
+    UUID editTransportConfiguration(TransportConfigurationDto transport);
 
-    boolean deleteTransportConfiguration(TransportConfigurationDto interfaceDecoder);
+    boolean deleteTransportConfiguration(String projectName, String platformName, String configurationName);
 
-    boolean addTransportConfiguration(TransportConfigurationDto interfaceDecoder);
+    UUID addTransportConfiguration(TransportConfigurationDto transport);
 }

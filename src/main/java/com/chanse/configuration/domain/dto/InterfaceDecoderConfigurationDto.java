@@ -15,10 +15,18 @@ public class InterfaceDecoderConfigurationDto {
     @NotNull
     protected String projectName;
 
+    @NotNull
+    protected String createdBy;
+
     protected String platformName;
 
     @NotNull
-    public String interfaceDecoderAsJson;
+    protected String configurationName;
 
-    public UUID interfaceDecoderConfigurationId;
+    @NotNull
+    protected String interfaceDecoderAsJson;
+
+    protected UUID interfaceDecoderConfigurationId;
+
+    protected String userComments;
 }

@@ -2,9 +2,12 @@ plugins {
 	id 'org.springframework.boot' version '2.2.2.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 	id 'java'
+	id 'application'
+	id 'maven-publish'
+	id 'io.franzbecker.gradle-lombok' version '2.1'
 }
 
-group = 'com.chanse.configuration'
+group = 'com.chanse.newUt'
 version '1.0-SNAPSHOT'
 sourceCompatibility = '1.8'
 
@@ -52,3 +55,34 @@ dependencyManagement {
 test {
 	useJUnitPlatform()
 }
+
+application {
+	mainClassName = 'com.chanse.configuration.ConfigurationApplication'
+}
+
+tasks.withType(JavaCompile) {
+	options.warnings = false
+}
+
+bootJar {
+	enabled = true
+}
+jar{
+	enabled = true
+}
+
+publishing {
+	publications {
+		domain(MavenPublication) {
+			from components.java
+		}
+	}
+
+	repositories {
+		maven {
+			name = 'configuration'
+			url = "file://${buildDir}/repo"
+		}
+	}
+}
+

@@ -42,7 +42,8 @@ public interface ConfigurationServiceApi {
     @RequestMapping(value = "/configurationMessages",
             method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.ACCEPTED)
-    List<MessageConfigurationDto> getConfigurationMessages(String project, String platform);
+    List<MessageConfigurationDto> getConfigurationMessages(@RequestParam("project") String project,
+                                                           @RequestParam("platform") String platform);
 
     /**
      * Returns the messageConfiguration tied to a given project and its platform and message name.
@@ -54,17 +55,20 @@ public interface ConfigurationServiceApi {
     @RequestMapping(value = "/configurationMessage",
             method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.ACCEPTED)
-    MessageConfigurationDto getConfigurationMessage(String project, String platform, String messageName);
+    MessageConfigurationDto getConfigurationMessage(@RequestParam("project") String project,
+                                                    @RequestParam("platform") String platform,
+                                                    @RequestParam("messageName") String messageName);
 
     /**
      * Attempts to create and place a messageConfiguration entity into the database if no message currently
      * exists with the correct unqiueness
      * @param dto the new DTO that wishes to be added
+     * @return the UUID of the entity cretaed or updated
      */
     @RequestMapping(value = "/configurationMessage",
             method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.ACCEPTED)
-    void putConfigurationMessage(MessageConfigurationDto dto);
+    UUID putConfigurationMessage(@RequestBody() MessageConfigurationDto dto);
 
     /**
      * Attempts to find a messageConfiguration entity in the database if no message currently
@@ -74,7 +78,7 @@ public interface ConfigurationServiceApi {
     @RequestMapping(value = "/updateConfigurationMessage",
             method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.ACCEPTED)
-    void updateConfigurationMessage(MessageConfigurationDto dto);
+    UUID updateConfigurationMessage(@RequestBody() MessageConfigurationDto dto);
 
     /**
      * Attempts to create and place a messageConfiguration entity into the database if no message currently
@@ -83,7 +87,9 @@ public interface ConfigurationServiceApi {
     @RequestMapping(value = "/deleteConfigurationMessage",
             method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.ACCEPTED)
-    void deleteConfigurationMessage(String project, String platform, String messageName);
+    void deleteConfigurationMessage(@RequestParam("project") String project,
+                                    @RequestParam("platform") String platform,
+                                    @RequestParam("messageName") String messageName);
 
 
     /********************************************************************************************************
@@ -100,7 +106,8 @@ public interface ConfigurationServiceApi {
     @RequestMapping(value = "/interfaceDecoders",
             method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.ACCEPTED)
-    List<InterfaceDecoderConfigurationDto> getGetInterfaceDecoders(String project, String platform);
+    List<InterfaceDecoderConfigurationDto> getGetInterfaceDecoders(@RequestParam("project") String project,
+                                                                   @RequestParam("platform") String platform);
 
     /**
      * Returns the messageConfiguration tied to a given project and its platform and message name.
@@ -112,17 +119,20 @@ public interface ConfigurationServiceApi {
     @RequestMapping(value = "/interfaceDecoder",
             method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.ACCEPTED)
-    InterfaceDecoderConfigurationDto getInterfaceDecoder(String project, String platform, String configurationName);
+    InterfaceDecoderConfigurationDto getInterfaceDecoder(@RequestParam("project") String project,
+                                                         @RequestParam("platform") String platform,
+                                                         @RequestParam("configurationName") String configurationName);
 
     /**
      * Attempts to create and place a messageConfiguration entity into the database if no message currently
      * exists with the correct unqiueness
      * @param dto the new DTO that wishes to be added
+     * @return the UUID of the entity cretaed or updated
      */
     @RequestMapping(value = "/interfaceDecoder",
             method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.ACCEPTED)
-    void putInterfaceDecoder(InterfaceDecoderConfigurationDto dto);
+    UUID putInterfaceDecoder(@RequestBody() InterfaceDecoderConfigurationDto dto);
 
     /**
      * Attempts to find a messageConfiguration entity in the database if no message currently
@@ -132,7 +142,7 @@ public interface ConfigurationServiceApi {
     @RequestMapping(value = "/updateInterfaceDecoder",
             method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.ACCEPTED)
-    void updateInterfaceDecoder(InterfaceDecoderConfigurationDto dto);
+    UUID updateInterfaceDecoder(@RequestBody() InterfaceDecoderConfigurationDto dto);
 
     /**
      * Attempts to create and place a messageConfiguration entity into the database if no message currently
@@ -141,7 +151,9 @@ public interface ConfigurationServiceApi {
     @RequestMapping(value = "/deleteInterfaceDecoder",
             method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.ACCEPTED)
-    void deleteInterfaceDecoder(String project, String platform, String configurationName);
+    void deleteInterfaceDecoder(@RequestParam("project") String project,
+                                @RequestParam("platform") String platform,
+                                @RequestParam("confdigurationName") String configurationName);
 
     /********************************************************************************************************
      * TransportConfiguration EndPoints
@@ -157,7 +169,8 @@ public interface ConfigurationServiceApi {
     @RequestMapping(value = "/transportConfigurations",
             method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.ACCEPTED)
-    List<TransportConfigurationDto> getTransportConfigurations(String project, String platform);
+    List<TransportConfigurationDto> getTransportConfigurations(@RequestParam("project") String project,
+                                                               @RequestParam("platform") String platform);
 
     /**
      * Returns the TransportConfigurationDto tied to a given project and its platform and message name.
@@ -169,17 +182,20 @@ public interface ConfigurationServiceApi {
     @RequestMapping(value = "/transportConfiguration",
             method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.ACCEPTED)
-    TransportConfigurationDto getTransportConfiguration(String project, String platform, String configurationName);
+    TransportConfigurationDto getTransportConfiguration(@RequestParam("project") String project,
+                                                        @RequestParam("platform") String platform,
+                                                        @RequestParam("configurationName") String configurationName);
 
     /**
      * Attempts to create and place a TransportConfigurationDto entity into the database if no message currently
      * exists with the correct unqiueness
      * @param dto the new DTO that wishes to be added
+     * @return the UUID of the entity cretaed or updated
      */
     @RequestMapping(value = "/transportConfiguration",
             method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.ACCEPTED)
-    void putTransportConfiguration(TransportConfigurationDto dto);
+    UUID putTransportConfiguration(@RequestBody() TransportConfigurationDto dto);
 
     /**
      * Attempts to find a TransportConfigurationDto entity in the database if no message currently
@@ -189,7 +205,7 @@ public interface ConfigurationServiceApi {
     @RequestMapping(value = "/updateTransportConfiguration",
             method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.ACCEPTED)
-    void updateTransportConfiguration(TransportConfigurationDto dto);
+    UUID updateTransportConfiguration(@RequestBody() TransportConfigurationDto dto);
 
     /**
      * Attempts to create and place a TransportConfigurationDto entity into the database if no message currently
@@ -198,14 +214,26 @@ public interface ConfigurationServiceApi {
     @RequestMapping(value = "/deleteTransportConfiguration",
             method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.ACCEPTED)
-    void deleteTransportConfiguration(String project, String platform, String configurationName);
+    void deleteTransportConfiguration(@RequestParam("project") String project,
+                                      @RequestParam("platform") String platform,
+                                      @RequestParam("configurationName") String configurationName);
 
 
 
     /********************************************************************************************************
      * TODO Create Project with users etc. User Creation/Project authentications below
      ********************************************************************************************************/
-    UUID addProject(String projectName, UUID userId);
+    @RequestMapping(value = "/addProject",
+            method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    UUID addProject(@RequestParam("projectName") String projectName,
+                    @RequestParam("userId") UUID userId);
 
-    boolean addProjectUser(String projectName, UUID userId, UserCredentialsDto userDto);
+
+    @RequestMapping(value = "/addProjectUser",
+            method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    boolean addProjectUser(@RequestParam("projectName") String projectName,
+                           @RequestParam("userId") UUID userId,
+                           @RequestBody() UserCredentialsDto userDto);
 }

@@ -24,86 +24,137 @@ public class ConfigurationServiceController implements ConfigurationServiceApi {
 
     @Override
     public List<MessageConfigurationDto> getConfigurationMessages(String project, String platform) {
-        return null;
+        List<MessageConfigurationDto> messages = configurationService.getMessages(project, platform);
+        // TODO add in the ability to throw a unique 400 message if something goes wrong
+        return messages;
     }
 
     @Override
     public MessageConfigurationDto getConfigurationMessage(String project, String platform, String messageName) {
-        return null;
+        MessageConfigurationDto message = configurationService.getMessage(project, platform, messageName);
+        return message;
     }
 
     @Override
-    public void putConfigurationMessage(MessageConfigurationDto dto) {
-
+    public UUID putConfigurationMessage(MessageConfigurationDto dto) {
+        UUID entityId = configurationService.addMessage(dto);
+        if(entityId == null){
+            //TODO change it to be a throw/catch and then throw a specific type 400 error here
+            System.out.println("Error tried to add a message that already exists");
+        }
+        return entityId;
     }
 
     @Override
-    public void updateConfigurationMessage(MessageConfigurationDto dto) {
-
+    public UUID updateConfigurationMessage(MessageConfigurationDto dto) {
+        UUID entityId = configurationService.editMessage(dto);
+        if(entityId == null){
+            //TODO change it to be a throw/catch and then throw a specific type 400 error here
+            System.out.println("Error tried to add a message that already exists");
+        }
+        return entityId;
     }
 
     @Override
     public void deleteConfigurationMessage(String project, String platform, String messageName) {
-
+        boolean msgDeleted = configurationService.deleteMessage(project, platform, messageName);
     }
 
     @Override
     public List<InterfaceDecoderConfigurationDto> getGetInterfaceDecoders(String project, String platform) {
-        return null;
+        List<InterfaceDecoderConfigurationDto> interfaceConfigs = configurationService.getInterfaceDecoders(project, platform);
+        //TODO allow for us to call to the service and send a 400 custom message if something goes wrong
+        return interfaceConfigs;
     }
 
     @Override
     public InterfaceDecoderConfigurationDto getInterfaceDecoder(String project, String platform, String configurationName) {
-        return null;
+        InterfaceDecoderConfigurationDto dto = configurationService.getInterfaceDecoder(project, platform, configurationName);
+        //TODO allow for us to call to the service and send a 400 custom message if something goes wrong
+        return dto;
     }
 
     @Override
-    public void putInterfaceDecoder(InterfaceDecoderConfigurationDto dto) {
-
+    public UUID putInterfaceDecoder(InterfaceDecoderConfigurationDto dto) {
+        UUID entityId = configurationService.addInterfaceDecoder(dto);
+        if(entityId == null){
+            //TODO change it to be a throw/catch and then throw a specific type 400 error here
+            System.out.println("Error tried to add a interfaceDecoder that already exists");
+        }
+        return entityId;
     }
 
     @Override
-    public void updateInterfaceDecoder(InterfaceDecoderConfigurationDto dto) {
-
+    public UUID updateInterfaceDecoder(InterfaceDecoderConfigurationDto dto) {
+        UUID entityId = configurationService.editInterfaceDecoder(dto);
+        if(entityId == null){
+            //TODO change it to be a throw/catch and then throw a specific type 400 error here
+            System.out.println("Error tried to edit a interfaceDecoder that already exists");
+        }
+        return entityId;
     }
 
     @Override
     public void deleteInterfaceDecoder(String project, String platform, String configurationName) {
-
+        boolean deleted = configurationService.deleteInterfaceDecoder(project, platform, configurationName);
+        if(!deleted){
+            //TODO change it to be a throw/catch and then throw a specific type 400 error here
+            System.out.println("Error tried to edit a interfaceDecoder that already exists");
+        }
     }
 
     @Override
     public List<TransportConfigurationDto> getTransportConfigurations(String project, String platform) {
-        return null;
+        List<TransportConfigurationDto> transportConfigs = configurationService.getTransportConfigurations(project, platform);
+        //TODO catch and throw a custom 400
+        return transportConfigs;
     }
 
     @Override
     public TransportConfigurationDto getTransportConfiguration(String project, String platform, String configurationName) {
-        return null;
+        TransportConfigurationDto transportConfig = configurationService.getTransportConfiguration(project, platform, configurationName);
+        //TODO catch and throw a custom 400 if you need to
+        return transportConfig;
     }
 
     @Override
-    public void putTransportConfiguration(TransportConfigurationDto dto) {
-
+    public UUID putTransportConfiguration(TransportConfigurationDto dto) {
+        UUID entityId = configurationService.addTransportConfiguration(dto);
+        if(entityId == null){
+            //TODO change it to be a throw/catch and then throw a specific 400 error here
+            System.out.println("Error tried to add a transport Configuration that already exists");
+        }
+        return entityId;
     }
 
     @Override
-    public void updateTransportConfiguration(TransportConfigurationDto dto) {
-
+    public UUID updateTransportConfiguration(TransportConfigurationDto dto) {
+        UUID entityId = configurationService.editTransportConfiguration(dto);
+        if(entityId == null){
+            //TODO change it to be a throw/catch and then throw a specific 400 error here
+            System.out.println("Error tried to edit a transport Configuration that already exists");
+        }
+        return entityId;
     }
 
     @Override
     public void deleteTransportConfiguration(String project, String platform, String configurationName) {
-
+        boolean deleted = configurationService.deleteTransportConfiguration(project, platform, configurationName);
+        if(!deleted){
+            //TODO
+            System.out.println("Error trying to delete the transport Configuration");
+        }
     }
 
     @Override
     public UUID addProject(String projectName, UUID userId) {
+        // TODO
         return null;
     }
 
     @Override
     public boolean addProjectUser(String projectName, UUID userId, UserCredentialsDto userDto) {
+        // TODO
         return false;
     }
 

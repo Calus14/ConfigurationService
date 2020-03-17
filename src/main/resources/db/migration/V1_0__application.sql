@@ -24,5 +24,5 @@ create table transportConfigurationTable{
     created_by char varying(255) NOT NULL,
     user_comments char varying(255),
     CONSTRAINT fk_interface_decoder_configuration FOREIGN KEY (decoder_config_id)
-              REFERENCES interfaceDecoderConfigurationTable (config_id)
+              REFERENCES interfaceDecoderConfigurationTable (decoder_config_id)
 };

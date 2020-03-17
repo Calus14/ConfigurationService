@@ -15,12 +15,20 @@ public class TransportConfigurationDto {
     @NotNull
     protected String projectName;
 
+    @NotNull
+    protected String createdBy;
+
     protected String platformName;
+
+    @NotNull
+    protected String configurationName;
 
     protected UUID transportConfigurationId;
 
     @NotNull
     protected String transportAsJson;
+
+    protected String userComments;
 
     protected UUID interfaceDecoderId;
 
