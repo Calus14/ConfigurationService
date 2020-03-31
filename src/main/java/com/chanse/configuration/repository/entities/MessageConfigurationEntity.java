@@ -17,13 +17,10 @@ import javax.persistence.UniqueConstraint;
  */
 @Entity
 @Table(name="messageConfigurationTable",
-        uniqueConstraints = {@UniqueConstraint(columnNames = {"message_name", "platform_name", "project_name"})})
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"configuration_name", "platform_name", "project_name"})})
 @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 @Data
 public class MessageConfigurationEntity extends BaseConfigurationEntity {
-
-    @Column(name="message_name", nullable = false)
-    private String messageName;
 
     @Type(type="jsonb")
     @Column(columnDefinition = "jsonb", name="message_as_json", nullable = false)

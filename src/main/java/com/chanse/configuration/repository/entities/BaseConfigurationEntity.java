@@ -28,4 +28,8 @@ public abstract class BaseConfigurationEntity implements Serializable {
 
     @Column(name = "platform_name")
     private String platformName;
+
+    @Column(name="created_by", nullable = false)
+    private String createdBy;
+
 }

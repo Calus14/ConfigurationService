@@ -20,6 +20,9 @@ public class MessageConfigurationDto {
     protected String messageAsJson;
 
     @NotNull
-    protected String messageName;
+    protected String configurationName;
+
+    @NotNull
+    protected String createdBy;
 
 }

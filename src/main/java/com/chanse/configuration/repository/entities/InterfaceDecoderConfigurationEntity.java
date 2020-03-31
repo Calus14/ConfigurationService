@@ -6,12 +6,7 @@ import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-import javax.persistence.OneToMany;
-import javax.persistence.FetchType;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -25,14 +20,11 @@ public class InterfaceDecoderConfigurationEntity extends BaseConfigurationEntity
     @Column(columnDefinition = "jsonb", name = "interface_decoder_as_json", nullable = false)
     private String interfaceDecoderAsJson;
 
-    @Column(name="created_by", nullable = false)
-    private String createdBy;
-
     @Type(type="text")
     @Column(name="user_comments")
     private String userComments;
 
-    @OneToMany(fetch=FetchType.LAZY, mappedBy="interfaceDecoderConfigurationEntity")
+    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy="interfaceDecoderConfigurationEntity")
     @Column(name="transport_configuration_entity_list")
     List<TransportConfigurationEntity> transportConfigurationEntityList;
 }

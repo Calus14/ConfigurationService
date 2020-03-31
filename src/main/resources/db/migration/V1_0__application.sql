@@ -12,7 +12,7 @@ create table messageConfigurationTable (
     config_id uuid NOT NULL PRIMARY KEY,
     configuration_name char varying(255),
     project_name char varying(255) NOT NULL,
-    message_name char varying(255) NOT NULL,
+    created_by char varying(255) NOT NULL,
     message_as_json jsonb NOT NULL
 };
 

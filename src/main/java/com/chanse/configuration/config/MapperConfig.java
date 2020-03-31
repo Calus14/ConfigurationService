@@ -18,17 +18,19 @@ public class MapperConfig {
 
     public static MessageConfigurationDto getMessageDtoFromEntity(MessageConfigurationEntity entity){
         MessageConfigurationDto dto = new MessageConfigurationDto();
+        dto.setCreatedBy(entity.getCreatedBy());
         dto.setMessageAsJson(entity.getMessageAsJson());
         dto.setPlatformName(entity.getPlatformName());
         dto.setProjectName(entity.getProjectName());
-        dto.setMessageName(entity.getMessageName());
+        dto.setConfigurationName(entity.getConfigurationName());
         return dto;
     }
 
     public static MessageConfigurationEntity getMessageEntityFromDto(MessageConfigurationDto dto){
         MessageConfigurationEntity entity = new MessageConfigurationEntity();
+        entity.setCreatedBy(dto.getCreatedBy());
         entity.setMessageAsJson(dto.getMessageAsJson());
-        entity.setMessageName(dto.getMessageName());
+        entity.setConfigurationName(dto.getConfigurationName());
         entity.setPlatformName(dto.getPlatformName());
         entity.setProjectName(dto.getProjectName());
         return entity;

@@ -23,8 +23,6 @@ public class TransportConfigurationEntity extends BaseConfigurationEntity {
     @Column(columnDefinition = "jsonb", name="transport_as_json", nullable = false)
     private String transportAsJson;
 
-    @Column(name="created_by", nullable = false)
-    private String createdBy;
 
     @Type(type="text")
     @Column(name="user_comments")

@@ -14,8 +14,8 @@ import java.util.UUID;
 @Repository
 public interface MessageConfigurationRepository extends CrudRepository<MessageConfigurationEntity, UUID> {
 
-    MessageConfigurationEntity findFirstByMessageNameAndPlatformNameAndProjectName(
-                                        String messageName, String platformName, String projectName);
+    MessageConfigurationEntity findFirstByConfigurationNameAndPlatformNameAndProjectName(
+                                        String configurationName, String platformName, String projectName);
 
     List<MessageConfigurationEntity> findByProjectName(
                                         String projectName);

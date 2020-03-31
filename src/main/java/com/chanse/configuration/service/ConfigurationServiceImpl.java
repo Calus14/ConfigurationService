@@ -60,7 +60,7 @@ public class ConfigurationServiceImpl implements ConfigurationService{
     @Override
     public List<MessageConfigurationDto> getMessages(String projectName, String platformName) {
         List<MessageConfigurationDto> messageConfigDtos = new ArrayList();
-        List<MessageConfigurationEntity> messageConfigurationEntities = messageConfigurationRepository.findByPlatformNameAndProjectName(projectName, platformName);
+        List<MessageConfigurationEntity> messageConfigurationEntities = messageConfigurationRepository.findByPlatformNameAndProjectName(platformName, projectName);
         messageConfigurationEntities.stream().forEach( entity -> {
             messageConfigDtos.add(MapperConfig.getMessageDtoFromEntity(entity));
         });
@@ -71,7 +71,7 @@ public class ConfigurationServiceImpl implements ConfigurationService{
     @Override
     public MessageConfigurationDto getMessage(String projectName, String platformName, String messageName) {
         MessageConfigurationEntity entity =  messageConfigurationRepository.
-                                findFirstByMessageNameAndPlatformNameAndProjectName(messageName, platformName, projectName);
+                                findFirstByConfigurationNameAndPlatformNameAndProjectName(messageName, platformName, projectName);
         MessageConfigurationDto dto = entity == null ? null : MapperConfig.getMessageDtoFromEntity(entity);
         return dto;
     }
@@ -86,12 +86,12 @@ public class ConfigurationServiceImpl implements ConfigurationService{
     @Override
     public UUID editMessage(MessageConfigurationDto messageChanges) {
         MessageConfigurationEntity entity = messageConfigurationRepository.
-                findFirstByMessageNameAndPlatformNameAndProjectName(messageChanges.getMessageName(),
+                findFirstByConfigurationNameAndPlatformNameAndProjectName(messageChanges.getConfigurationName(),
                                                                     messageChanges.getPlatformName(),
                                                                     messageChanges.getProjectName() );
         if( entity == null ){
             // TODO handle a bad edit message
-            System.out.println("Error, no known message for of name "+messageChanges.getMessageName() + " in project:"
+            System.out.println("Error, no known message for of name "+messageChanges.getConfigurationName() + " in project:"
                                 + messageChanges.getProjectName() + " with platform " + messageChanges.getPlatformName() + " found");
             return null;
         }
@@ -104,7 +104,7 @@ public class ConfigurationServiceImpl implements ConfigurationService{
     @Override
     public boolean deleteMessage(String projectName, String platformName, String messageName) {
         MessageConfigurationEntity entity = messageConfigurationRepository.
-                findFirstByMessageNameAndPlatformNameAndProjectName(messageName,
+                findFirstByConfigurationNameAndPlatformNameAndProjectName(messageName,
                         platformName,
                         projectName );
         if( entity == null ){
@@ -121,7 +121,7 @@ public class ConfigurationServiceImpl implements ConfigurationService{
     @Override
     public UUID addMessage(MessageConfigurationDto message) {
         MessageConfigurationEntity entity = messageConfigurationRepository.
-                findFirstByMessageNameAndPlatformNameAndProjectName(message.getMessageName(),
+                findFirstByConfigurationNameAndPlatformNameAndProjectName(message.getConfigurationName(),
                         message.getPlatformName(),
                         message.getProjectName() );
         if( entity != null ){
@@ -150,7 +150,7 @@ public class ConfigurationServiceImpl implements ConfigurationService{
     public List<InterfaceDecoderConfigurationDto> getInterfaceDecoders(String projectName, String platformName) {
         List<InterfaceDecoderConfigurationDto> interfaceDecoderConfigDtos = new  ArrayList();
         List<InterfaceDecoderConfigurationEntity> interfaceDecoderConfigEntities =
-                interfaceDecoderConfigurationRepository.findByPlatformNameAndProjectName(projectName, platformName);
+                interfaceDecoderConfigurationRepository.findByPlatformNameAndProjectName(platformName, projectName);
         interfaceDecoderConfigEntities.stream().forEach( entity -> {
             interfaceDecoderConfigDtos.add(MapperConfig.getInterfaceDtoFromEntity(entity));
         });
@@ -242,7 +242,7 @@ public class ConfigurationServiceImpl implements ConfigurationService{
     public List<TransportConfigurationDto> getTransportConfigurations(String projectName, String platformName) {
         List<TransportConfigurationDto> transportConfigDtos = new  ArrayList();
         List<TransportConfigurationEntity> transportConfigEntities =
-                transportConfigurationRepository.findByPlatformNameAndProjectName(projectName, platformName);
+                transportConfigurationRepository.findByPlatformNameAndProjectName(platformName, projectName);
         transportConfigEntities.stream().forEach( entity -> {
             transportConfigDtos.add(MapperConfig.getTransportDtoFromEntity(entity));
         });
